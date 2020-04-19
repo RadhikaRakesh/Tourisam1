@@ -15,7 +15,7 @@ function invalidate()
     var pwd=document.getElementById("password").value;
 
   var alp=/^([\w]+)$/
-    if(uname.length<5)
+    if(uname.length<6)
     {
         alert("UserName is too short");
         return false;
@@ -33,7 +33,7 @@ function invalidate()
      var pwd=document.getElementById("password").value;
 
 var alp=/^([\w]+)$/
-     if(pwd.length<5)
+     if(pwd.length<8)
     {
         alert("Password is too short");
     return false;
@@ -48,7 +48,7 @@ var alp=/^([\w]+)$/
 function upvalidate()
 {
 
-    if(checkname()&&checklastname()&&checkcity()&&phvalidate()&&checkusername()&&checkusername()&&checkpassword())
+    if(checkname()&&checklastname()&&checkmail()&&phvalidate()&&checkusername()&&checkusername()&&checkpassword())
     {return true;}
     else
     { alert("fill all fields");
@@ -67,12 +67,7 @@ var ph=/^([1-9])([0-9]{9})$/;
   {
     alert("Mobile no must be numbers and 10 digits ");
     return false;
-  }}
-
-    
-    
-    
-   
+  }}   
   // var exp=/^([a-zA-Z])+$/;
    //var ph=/^([1-9])([0-9]{9})$/;
    //var alp=/^([\w]+)$/
@@ -102,20 +97,18 @@ function checklastname(){
     }
     else{return true;}
 }
-function checkcity(){ 
+function checkmail(){ 
 
-    var exp=/^([a-zA-Z])+$/;  
-    var city=document.getElementById("city");
-if(!exp.test(city.value))
+    var exp=/^([\w\.\-]+)@([\w\-]+)\.([a-z]{2,3})((\.[a-z]{2,3}?)?)$/;  
+    var mail=document.getElementById("email");
+if(!exp.test(mail.value))
     {
-        city.style.border="solid red";
-        alert("City name must be alphabets");
+        mail.style.border="solid red";
+        alert("email format is not valid");
         return false;
     }else{return true;}
 }
 
-   // if(!phvalidate())
-    //{return false;}
     function checkusername(){
         var uname=document.getElementById("username");
         var alp=/^([\w]+)$/
@@ -135,13 +128,23 @@ if(!exp.test(city.value))
     function checkpassword(){
         var pwd=document.getElementById("password");
         var alp=/^([\w]+)$/
-        if(pwd.value.length==0||pwd.value.length<5)
+        if(pwd.value.length==0||pwd.value.length<8)
     {
         pwd.style.border="solid red";
-        alert("Password must contain atleast 5 letter");
+        alert("Password must contain atleast 8 letter");
         return false;
     }
-    else if(!alp.test(pwd.value)){
+    else if(pwd.value.length>12)
+    {
+        pwd.style.border="solid green";
+        alert("password is strong");
+    }else if(pwd.value.length>8&& pwd.value.length<12)
+    {
+        pwd.style.border="solid orange";
+        alert("password is medium");
+    }
+    if(!alp.test(pwd.value)){
+        pwd.style.border="solid orange";
         alert("Password must be alphanumeric");
         return false;
 
