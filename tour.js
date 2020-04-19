@@ -57,8 +57,9 @@ function upvalidate()
 
 function phvalidate(){
     var mno=document.getElementById("mno");
-var ph=/^([1-9])([0-9]{9})$/;
- if(ph.test(mno.value)&&mno.value.length>1)
+//var ph=/^([1-9])([0-9]{9})$/;
+var ph=/^(\d{3})(\.?\-?\ ?)(\d{3})(\.?\-?\ ?)(\d{4})$/;
+if(ph.test(mno.value)&&mno.value.length>1)
   {
     //alert("valid no");
     return true;
@@ -67,7 +68,7 @@ var ph=/^([1-9])([0-9]{9})$/;
   {
     alert("Mobile no must be numbers and 10 digits ");
     return false;
-  }}   
+  }}  
   // var exp=/^([a-zA-Z])+$/;
    //var ph=/^([1-9])([0-9]{9})$/;
    //var alp=/^([\w]+)$/
@@ -127,6 +128,7 @@ if(!exp.test(mail.value))
 }
     function checkpassword(){
         var pwd=document.getElementById("password");
+        //var a=/^((?=.*\d)(?=.*[A-Z])(?=.*\W).{8})$/;
         var alp=/^([\w]+)$/
         if(pwd.value.length==0||pwd.value.length<8)
     {
@@ -134,18 +136,19 @@ if(!exp.test(mail.value))
         alert("Password must contain atleast 8 letter");
         return false;
     }
-    else if(pwd.value.length>12)
-    {
-        pwd.style.border="solid green";
-        alert("password is strong");
-    }else if(pwd.value.length>8&& pwd.value.length<12)
+    else if(pwd.value.length>8 && pwd.value.length<12)
     {
         pwd.style.border="solid orange";
         alert("password is medium");
+        return false;
+    }else {
+        pwd.style.border="solid green";
+        alert("password is strong");
+
     }
     if(!alp.test(pwd.value)){
         pwd.style.border="solid orange";
-        alert("Password must be alphanumeric");
+        alert("Password must be alphanumeric and minimum one uppercase and lower case letter");
         return false;
 
     } else {return true;}}
