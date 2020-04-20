@@ -1,4 +1,4 @@
-
+//function for validate signin page
 function invalidate()
 {
 
@@ -9,10 +9,10 @@ function invalidate()
         return false;}
 
 }
-    
+    //function for checking username in signin page
   function checkuser()
   { var uname=document.getElementById("username").value;
-    var pwd=document.getElementById("password").value;
+    
 
   var alp=/^([\w]+)$/
     if(uname.length<6)
@@ -27,34 +27,45 @@ function invalidate()
     }
     else{return true;}
 }
+//function for checking password in signin page
  function checkpwd()
 {
-  var uname=document.getElementById("username").value;
-     var pwd=document.getElementById("password").value;
-
-var alp=/^([\w]+)$/
-     if(pwd.length<8)
-    {
-        alert("Password is too short");
-    return false;
-    }
-    else if(!alp.test(pwd.value))
-    {
-       alert("User Name must be alphanumeric");
-        return false;
-    }
-    else{ return true;}
+  
+     var pwd=document.getElementById("password");
+     var alp=/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[a-zA-Z0-9]{8,}$/;
+     //var a=/^([a-z][A-Z]+)$/;
+         if(alp.test(pwd.value))
+         {
+           if(pwd.value.length>10)
+           {  pwd.style.border="solid green";
+             alert("Strong password and valid format");
+           return true;
+           }
+           else
+           {
+             pwd.style.border="solid orange";
+             alert("Valid format but medium password");
+           return false;
+           }
+         }
+          else
+           {
+             pwd.style.border="solid red";
+            alert("Password must be alphanumeric and minimum one uppercase and lower case letter and digit");
+             return false;
+           }
 }
+//function for signup page
 function upvalidate()
 {
 
     if(checkname()&&checklastname()&&checkmail()&&phvalidate()&&checkusername()&&checkusername()&&checkpassword())
     {return true;}
     else
-    { alert("fill all fields");
+    { alert("Please fill all fields");
         return false;}
 }
-
+//function for phone number in signup page
 function phvalidate(){
     var mno=document.getElementById("mno");
 //var ph=/^([1-9])([0-9]{9})$/;
@@ -72,7 +83,7 @@ if(ph.test(mno.value)&&mno.value.length>1)
   // var exp=/^([a-zA-Z])+$/;
    //var ph=/^([1-9])([0-9]{9})$/;
    //var alp=/^([\w]+)$/
-
+//function for name in signup page
    function checkname()
    {
     var fname=document.getElementById("fname");
@@ -86,6 +97,7 @@ if(ph.test(mno.value)&&mno.value.length>1)
     }
     else {return true;}
 }
+//function for checking name in signup page
 function checklastname(){
     var lname=document.getElementById("lname"); 
     var exp=/^([a-zA-Z])+$/;
@@ -98,6 +110,7 @@ function checklastname(){
     }
     else{return true;}
 }
+//function for checking email in signup page
 function checkmail(){ 
 
     var exp=/^([\w\.\-]+)@([\w\-]+)\.([a-z]{2,3})((\.[a-z]{2,3}?)?)$/;  
@@ -109,15 +122,15 @@ if(!exp.test(mail.value))
         return false;
     }else{return true;}
 }
-
+//function for checking username in signup page
     function checkusername(){
         var uname=document.getElementById("username");
         var alp=/^([\w]+)$/
-    if(uname.value.length==0||uname.value.length<5)
+    if(uname.value.length==0||uname.value.length<6)
     {
         
         uname.style.border="sloid red";
-        alert("User Name must contain atleast 5 letter or alpha numeric ");
+        alert("User Name must contain atleast 6 letter or alpha numeric ");
         return false;
     }
     else if(!alp.test(uname.value)){
@@ -126,30 +139,32 @@ if(!exp.test(mail.value))
 
     }else{return true;}
 }
-    function checkpassword(){
+//function for checking password in signup page
+    function checkpassword()
+    {
         var pwd=document.getElementById("password");
         //var a=/^((?=.*\d)(?=.*[A-Z])(?=.*\W).{8})$/;
-        var alp=/^([\w]+)$/
-        if(pwd.value.length==0||pwd.value.length<8)
-    {
-        pwd.style.border="solid red";
-        alert("Password must contain atleast 8 letter");
-        return false;
+        var alp=/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[a-zA-Z0-9]{8,}$/;
+        //var a=/^([a-z][A-Z]+)$/;
+            if(alp.test(pwd.value))
+            {
+              if(pwd.value.length>10)
+              {  pwd.style.border="solid green";
+                alert("Strong password and valid format");
+              return true;
+              }
+              else
+              {
+                pwd.style.border="solid orange";
+                alert("Valid format but medium password");
+              return false;
+              }
+            }
+             else
+              {
+                pwd.style.border="solid red";
+               alert("Password must be alphanumeric and minimum one uppercase and lower case letter and digit");
+                return false;
+              } 
     }
-    else if(pwd.value.length>8 && pwd.value.length<12)
-    {
-        pwd.style.border="solid orange";
-        alert("password is medium");
-        return false;
-    }else {
-        pwd.style.border="solid green";
-        alert("password is strong");
-
-    }
-    if(!alp.test(pwd.value)){
-        pwd.style.border="solid orange";
-        alert("Password must be alphanumeric and minimum one uppercase and lower case letter");
-        return false;
-
-    } else {return true;}}
    // return true;
